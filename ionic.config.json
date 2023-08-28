@@ -1,0 +1,7 @@
+{
+  "name": "queastions_front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
