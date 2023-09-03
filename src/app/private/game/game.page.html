@@ -5,12 +5,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div >   <animation-timer [time]="this.timeGame" [step]="step"></animation-timer></div>
   <ion-content *ngIf="_currentQuestion && step===GameStep.start">
 <!--    <ion-content>-->
-      <ion-progress-bar [value]="progress" [buffer]="progress"></ion-progress-bar>
+<!--      <ion-progress-bar [value]="progress" [buffer]="progress"></ion-progress-bar>-->
 <!--    </ion-content>-->
+
+
+<!--    <animation-timer [time]="timeGame"></animation-timer>-->
     <ion-item class="ion-align-items-center">{{task}}\{{timeGame}}</ion-item>
-    <ion-card *ngIf="step===GameStep.start">
+
+
+      <ion-card *ngIf="step===GameStep.start">
       <ion-progress-bar class="ion-margin-vertical" [value]="this.result.correct / this.result.count"></ion-progress-bar>
       <ion-item class="ion-align-items-center">{{result.correct}}\{{result.count}}</ion-item>
 

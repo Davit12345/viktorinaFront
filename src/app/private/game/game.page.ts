@@ -1,27 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {GameService} from "../../services/game.service";
 import {AlertController, LoadingController} from "@ionic/angular";
 import {GameStep} from "../../enum/GameStap";
 import {CurrentQuestion} from "./shared/CurrentQuestion";
-import {trigger, transition, animate, style} from '@angular/animations';
 import {Result} from "./shared/Result";
+import {AnimationTimerComponent} from "../../components/animation-timer";
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.page.html',
   styleUrls: ['./game.page.scss'],
-  animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({opacity: 0}),
-        animate('300ms', style({opacity: 1})),
-      ]),
-      transition(':leave', [
-        animate('300ms', style({opacity: 0})),
-      ]),
-    ]),
-  ],
 })
 export class GamePage implements OnInit {
   currentQuestion(): CurrentQuestion {
@@ -39,8 +28,12 @@ export class GamePage implements OnInit {
   percent = 100
   result: Result;
   protected readonly GameStep = GameStep;
-  timeGame = 15;
+  timeGame = 8;
+  @ViewChild(AnimationTimerComponent,{static:true}) childComponent!: AnimationTimerComponent;
 
+  child(){
+   this.childComponent.startTimer()
+  }
   constructor(private route: ActivatedRoute, private _gameService: GameService, private loadingController: LoadingController, private alertController: AlertController) {
     this.result = new Result({})
   }
@@ -50,9 +43,8 @@ export class GamePage implements OnInit {
 
   async ionViewWillEnter() {
     this.task = this.timeGame;
-    this.duration = this.timeGame * 100000;
     this.percent = 100;
-    this.result=new Result({})
+    this.result = new Result({})
     this.route.params.subscribe(params => {
       this.categoryData = JSON.parse(params['data']);
       this.getData(this.categoryData)
@@ -75,19 +67,19 @@ export class GamePage implements OnInit {
       );
   }
 
-  task: number = this.timeGame
+  task: number = 0
   intervalTimer: any
 
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'The game is loading.Pleas wait!',
-      duration: 500,
+      duration: 5000,
 
     });
-   loading.onDidDismiss().then(() => {
+    loading.onDidDismiss().then(() => {
       this.step = GameStep.start
       this.nextQuestion()
-      this.startTimer()
+      this.childComponent?.startTimer()
       this.intervalTimer = setInterval(() => {
         this.refreshData();
       }, 1000);
@@ -133,26 +125,8 @@ export class GamePage implements OnInit {
     this.questionsData = undefined;
     this.setCurrentQuestion(undefined);
     this.step = GameStep.init
+    clearInterval(this.childComponent.animationIntervalTimer)
   }
 
-  duration: number = this.timeGame * 100000; // Duration of the timer in milliseconds
-  interval: number = 100; // Update interval in milliseconds
-  progress: number = 0;
-
-
-
-  startTimer() {
-    this.progress = 0; // Reset progress
-    const increments = this.duration / this.interval;
-    const incrementAmount = 100 / increments;
-
-    const interval = setInterval(() => {
-      this.progress += incrementAmount;
-
-      if (this.progress >= 100) {
-        clearInterval(interval);
-      }
-    }, this.interval);
-  }
 
 }

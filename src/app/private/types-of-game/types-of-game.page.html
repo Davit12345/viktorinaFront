@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>typesOfGame</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+    <ion-card *ngFor="let item of gameTypes">
+        <ion-row class="flex">
+            <ion-col class="col col-25">
+                <ion-img [src]="item.image"></ion-img>
+            </ion-col>
+            <ion-col class="col col-75">
+                <ion-title>{{item.title}}</ion-title>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+</ion-content>

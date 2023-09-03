@@ -1,0 +1,60 @@
+$color-brand-primary: #69BE3F;
+$color-brand-primary-dark: darken($color-brand-primary, 10%);
+$color-brand-primary-darker: rgb(26, 71, 31);
+$color-brand-primary-light: #78CB4F;
+$color-brand-primary-lighter: #8dda67;
+$color-brand-secondary: #69DE3A;
+$color-brand-secondary-light: #d2f5c4;
+$color-brand-secondary-lighter: #f0fceb;
+$color-brand-vivid-green: #69DE3A;
+$color-status-error: #D76464;
+$color-status-error-darker: #cb3434;
+$color-status-success: rgba(89, 201, 165, 0.9);
+$color-status-warning: #EFBC5A;
+$color-grays-black: #292929;
+$color-grays-dark: #4B4C4A;
+$color-grays-silver: #A3A5A4;
+$color-grays-light: #E4E4E4;
+$color-grays-border: rgba(129, 141, 129, 0.2);
+$color-grays-white: #FFFFFF;
+$color-purple: #732081;
+$color-purple-dark: darken($color-purple, 10%);
+$color-purple-light: #A055AC;
+$color-purple-lighter: #B584BD;
+$color-pink: #FEDFFD;
+$color-pink-light: #feebfe;
+$color-background: #F5F5F5;
+$color-primary-text: #161616;
+$color-divider: #DFE1E4;
+$color-very-light-blue: #E6F5F7;
+
+$shadow-level-1: 0px 5px 15px rgba(29, 46, 87, 0.08);
+$shadow-level-2: 0px 10px 50px rgba(15, 47, 70, 0.15);
+$shadow-primary: 0px 4px 15px rgba(87, 78, 96, 0.24);
+$shadow-button: inset 0px 4px 4px rgba(26, 71, 31, 0.25);
+
+$container-width: 1230px;
+$container-width-small: 1116px;
+$container-width-smallest: 810px;
+$container-width-large: 1340px;
+$pagepadding: 16px;
+$navbar-height: 100px;
+$navbar-height-mobile: 84px;
+$icon-size: 24px;
+$mobile: 767px;
+
+$font: 'Poppins', Arial, sans-serif;
+$font-size-promo-default: 16px;
+$font-size-promo-h1: 52px;
+$font-size-h2: 29px;
+$font-size-h3: 20px;
+$font-size-h4: 13px;
+$font-size-body: 15px;
+$font-size-small: 0.93rem;
+$font-size-smaller: 0.86rem;
+$font-size-big: 1.2rem;
+
+@mixin h1 {font-size: $font-size-promo-h1; font-weight: bold; line-height: 1.4em;}
+@mixin h2 {font-size: $font-size-h2; font-weight: 600; line-height: 1.5em;}
+@mixin h3 {font-size: $font-size-h3; font-weight: 600; line-height: 1.5em;}
+@mixin h4 {font-size: $font-size-h4; font-weight: 600; line-height: 1.5em;}

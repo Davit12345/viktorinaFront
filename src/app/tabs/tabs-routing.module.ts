@@ -25,7 +25,11 @@ const routes: Routes = [
       {
         path: 'tournament',
         loadChildren: () => import('./../private/tournament/tournament.module').then( m => m.TournamentPageModule)
-      }
+      },
+      {
+        path: 'types',
+        loadChildren: () => import('./../private/types-of-game/types-of-game.module').then( m => m.TypesOfGamePageModule)
+      },
     ]
   },
   {
