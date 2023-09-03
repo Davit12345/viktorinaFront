@@ -1,0 +1,77 @@
+.content {
+  display: grid;
+  grid-template-rows: 20% max-content auto;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2019c1), to(#934fb0), color-stop(0.75, #853992));
+  height: 100%;
+
+  .header {
+  }
+
+  .body {
+    padding: 10px;
+    position: relative;
+    z-index: 15;
+    .cube {
+      grid-template-rows: 40px max-content 50px;
+
+      background: #ffffff;
+      border-radius: 20px;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+
+      .title {
+        margin: 5px auto;
+        font-size: 25px;
+        font-family: Jazz LET;
+        color: #312af1;
+      }
+
+      //input{
+      //  width: 80%;
+      //  height: 40px;
+      //  border-radius: 6px;
+      //  background: white;
+      //  border: none;
+      //  padding: 0 10px;
+      //  margin: auto;
+      //
+      //}
+      .inputs {
+        margin-top: 30px;
+        ion-input {
+          border: solid 2px #2019c1;
+          width: 90%;
+          margin: 8px auto;
+          padding: 5px 15px !important;
+          text-align: start;
+          font-size: 17px;
+          border-radius: 7px;
+        }
+      }
+
+      button {
+        z-index: 11;
+        width: 90%;
+        height: 46px;
+        margin: 30px auto;
+        background: #853992;
+        border-radius: 5px;
+        font-size: 32px;
+        font-family: AngsanaUPC;
+        color: #2019c1;
+      }
+    }
+  }
+
+  .footer{
+    margin: auto;
+    position: relative;
+    color: white;
+    .link{
+      color: blue;
+      text-decoration: underline;
+    }
+  }
+
+}

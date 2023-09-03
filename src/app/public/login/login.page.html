@@ -1,0 +1,30 @@
+
+<ion-content>
+    <div class="content">
+       <div class="header"></div>
+        <div class="body">
+
+            <div class="cube">
+                <form  [formGroup]="ionicForm">
+                    <div class="title">Login</div>
+                    <div class="inputs">
+
+                        <div>
+                            <ion-input  placeholder="username" formControlName="username" type="text" ></ion-input>
+                        </div>
+                        <div>
+                            <ion-input  placeholder="password" formControlName="password" type="password" ></ion-input>
+                        </div>
+
+                    </div>
+                    <button (click)="login()">Confirm</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+
+            <div>Do you don't have account: <span class="link" routerLink="/register" >Registration</span></div>
+        </div>
+    </div>
+</ion-content>
+

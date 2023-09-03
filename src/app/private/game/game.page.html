@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>game</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-content *ngIf="_currentQuestion && step===GameStep.start">
+<!--    <ion-content>-->
+      <ion-progress-bar [value]="progress" [buffer]="progress"></ion-progress-bar>
+<!--    </ion-content>-->
+    <ion-item class="ion-align-items-center">{{task}}\{{timeGame}}</ion-item>
+    <ion-card *ngIf="step===GameStep.start">
+      <ion-progress-bar class="ion-margin-vertical" [value]="this.result.correct / this.result.count"></ion-progress-bar>
+      <ion-item class="ion-align-items-center">{{result.correct}}\{{result.count}}</ion-item>
+
+      <ion-card-header>
+      <ion-card-title>{{ _currentQuestion.data.question }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let answer of _currentQuestion.data.answers" (click)="answerQuestion(answer)" class="animated-item">
+          <div class="floating-color"></div>
+          {{ answer.text }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  </ion-content>
+  <ion-content *ngIf="step===GameStep.finish">
+    <div>your result</div>
+    <div>{{result.correct}}\{{result.count}}</div>
+  </ion-content>
+</ion-content>

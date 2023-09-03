@@ -1,0 +1,42 @@
+<ion-content>
+<!--    <public-view></public-view>-->
+
+    <div class="content">
+        <div class="header"></div>
+
+        <div class="body">
+            <div class="cube">
+                <form [formGroup]="ionicForm">
+                    <div class="title">Registration</div>
+                    <div class="inputs">
+
+                        <div>
+                            <ion-input placeholder="username" formControlName="username" type="text"></ion-input>
+                        </div>
+                        <div>
+                            <ion-input placeholder="email" formControlName="email" type="text"></ion-input>
+                        </div>
+                        <div>
+                            <ion-input placeholder="name" formControlName="fname" type="text"></ion-input>
+                        </div>
+                        <div>
+                            <ion-input placeholder="surname" formControlName="lname" type="text"></ion-input>
+                        </div>
+                        <div>
+                            <ion-input placeholder="password" formControlName="password" type="password"></ion-input>
+                        </div>
+                        <div>
+                            <ion-input placeholder="confirm-password" formControlName="confirm_password" type="password"></ion-input>
+                        </div>
+
+                    </div>
+                    <button (click)="register()">Confirm</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            <div>Do you have account: <span class="link" routerLink="/login">Login</span></div>
+        </div>
+    </div>
+</ion-content>
+

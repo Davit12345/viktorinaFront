@@ -1,0 +1,201 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>tournament</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content scrollEvents="true">
+  <ion-grid class="bracket">
+    <article id="container">
+
+      <section>
+        <div>Player 1</div>
+        <div>Player 2</div>
+        <div>Player 3</div>
+        <div>Player 4</div>
+        <div>Player 5</div>
+        <div>Player 6</div>
+        <div>Player 7</div>
+        <div>Player 8</div>
+      </section>
+
+      <div class="connecter">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <div class="line">
+        <div>
+        </div><div>
+      </div><div>
+      </div><div>
+      </div>
+      </div>
+
+      <section id="quarterFinals">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </section>
+
+      <div class="connecter" id="conn2">
+        <div></div>
+        <div></div>
+      </div>
+
+      <div class="line" id="line2">
+        <div></div>
+        <div></div>
+      </div>
+
+      <section id="semiFinals">
+        <div></div>
+        <div></div>
+      </section>
+
+      <div class="connecter" id="conn3">
+        <div></div>
+      </div>
+
+      <div class="line" id="line3">
+        <div></div>
+      </div>
+
+      <section id="final">
+        <div></div>
+      </section>
+
+    </article>  </ion-grid>
+  <div class="bottom-scroll-indicator"></div>
+</ion-content>
+<!--<ion-content [fullscreen]="true" scrollEvents="true">-->
+<!--&lt;!&ndash;  <ion-card>-->
+<!--    <ion-card-header>-->
+<!--      <ion-card-title>Football Table</ion-card-title>-->
+<!--    </ion-card-header>-->
+<!--    <ion-card-content>-->
+<!--      <ion-list>-->
+<!--        <ion-item>-->
+<!--          <ion-label>1/8 Final</ion-label>-->
+<!--          <ion-text slot="end">Team A 2 - 1 Team B</ion-text>-->
+<!--        </ion-item>-->
+<!--        <ion-item>-->
+<!--          <ion-label>1/4 Final</ion-label>-->
+<!--          <ion-text slot="end">Team C 3 - 2 Team D</ion-text>-->
+<!--        </ion-item>-->
+<!--        <ion-item>-->
+<!--          <ion-label>1/2 Final</ion-label>-->
+<!--          <ion-text slot="end">Team E 1 - 0 Team F</ion-text>-->
+<!--        </ion-item>-->
+<!--        <ion-item>-->
+<!--          <ion-label>Final</ion-label>-->
+<!--          <ion-text slot="end">Champion Team G 4 - 3 Team H</ion-text>-->
+<!--        </ion-item>-->
+<!--      </ion-list>-->
+<!--    </ion-card-content>-->
+<!--  </ion-card>&ndash;&gt;-->
+<!--&lt;!&ndash;  <ion-grid>&ndash;&gt;-->
+<!--&lt;!&ndash;    <ion-row>&ndash;&gt;-->
+<!--&lt;!&ndash;      <ion-col>&ndash;&gt;-->
+<!--&lt;!&ndash;        <ion-card>&ndash;&gt;-->
+<!--&lt;!&ndash;          <ion-card-content>&ndash;&gt;-->
+<!--&lt;!&ndash;            <ion-text>Team A 2</ion-text>&ndash;&gt;-->
+<!--&lt;!&ndash;          </ion-card-content>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ion-card>&ndash;&gt;-->
+<!--&lt;!&ndash;      </ion-col>&ndash;&gt;-->
+<!--&lt;!&ndash;    </ion-row>&ndash;&gt;-->
+<!--&lt;!&ndash;    <ion-row>&ndash;&gt;-->
+<!--&lt;!&ndash;      <ion-col size="6">&ndash;&gt;-->
+<!--&lt;!&ndash;        <ion-card>&ndash;&gt;-->
+<!--&lt;!&ndash;          <ion-card-content>&ndash;&gt;-->
+<!--&lt;!&ndash;            <ion-text>Team A 2</ion-text>&ndash;&gt;-->
+<!--&lt;!&ndash;          </ion-card-content>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ion-card>&ndash;&gt;-->
+<!--&lt;!&ndash;      </ion-col>&ndash;&gt;-->
+<!--&lt;!&ndash;      <ion-col size="6">&ndash;&gt;-->
+<!--&lt;!&ndash;        <ion-card>&ndash;&gt;-->
+<!--&lt;!&ndash;          <ion-card-content>&ndash;&gt;-->
+<!--&lt;!&ndash;            <ion-text>Team B 1</ion-text>&ndash;&gt;-->
+<!--&lt;!&ndash;          </ion-card-content>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ion-card>&ndash;&gt;-->
+<!--&lt;!&ndash;      </ion-col>&ndash;&gt;-->
+<!--&lt;!&ndash;    </ion-row>&ndash;&gt;-->
+<!--&lt;!&ndash;    <ion-row>&ndash;&gt;-->
+<!--&lt;!&ndash;      <ion-col>&ndash;&gt;-->
+<!--&lt;!&ndash;        <ion-card>&ndash;&gt;-->
+<!--&lt;!&ndash;          <ion-card-content>&ndash;&gt;-->
+<!--&lt;!&ndash;            <ion-text>Winner</ion-text>&ndash;&gt;-->
+<!--&lt;!&ndash;          </ion-card-content>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ion-card>&ndash;&gt;-->
+<!--&lt;!&ndash;      </ion-col>&ndash;&gt;-->
+<!--&lt;!&ndash;    </ion-row>&ndash;&gt;-->
+<!--&lt;!&ndash;  </ion-grid>&ndash;&gt;-->
+<!--  <div class="bottom-scroll-indicator">-->
+<!--    <article id="container">-->
+
+<!--    <section>-->
+<!--      <div>Player 1</div>-->
+<!--      <div>Player 2</div>-->
+<!--      <div>Player 3</div>-->
+<!--      <div>Player 4</div>-->
+<!--      <div>Player 5</div>-->
+<!--      <div>Player 6</div>-->
+<!--      <div>Player 7</div>-->
+<!--      <div>Player 8</div>-->
+<!--    </section>-->
+
+<!--    <div class="connecter">-->
+<!--      <div></div>-->
+<!--      <div></div>-->
+<!--      <div></div>-->
+<!--      <div></div>-->
+<!--    </div>-->
+
+<!--    <div class="line">-->
+<!--      <div>-->
+<!--      </div><div>-->
+<!--    </div><div>-->
+<!--    </div><div>-->
+<!--    </div>-->
+<!--    </div>-->
+
+<!--    <section id="quarterFinals">-->
+<!--      <div></div>-->
+<!--      <div></div>-->
+<!--      <div></div>-->
+<!--      <div></div>-->
+<!--    </section>-->
+
+<!--    <div class="connecter" id="conn2">-->
+<!--      <div></div>-->
+<!--      <div></div>-->
+<!--    </div>-->
+
+<!--    <div class="line" id="line2">-->
+<!--      <div></div>-->
+<!--      <div></div>-->
+<!--    </div>-->
+
+<!--    <section id="semiFinals">-->
+<!--      <div></div>-->
+<!--      <div></div>-->
+<!--    </section>-->
+
+<!--    <div class="connecter" id="conn3">-->
+<!--      <div></div>-->
+<!--    </div>-->
+
+<!--    <div class="line" id="line3">-->
+<!--      <div></div>-->
+<!--    </div>-->
+
+<!--    <section id="final">-->
+<!--      <div></div>-->
+<!--    </section>-->
+
+<!--    </article>-->
+<!--  </div>-->
+<!--</ion-content>-->
+

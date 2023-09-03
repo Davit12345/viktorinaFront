@@ -1,34 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import {CategoriesPageModule} from "../private/categories/categories.module";
+import {AuthGuardService} from "../helper/auth-guard.service";
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
+    canActivate: [AuthGuardService],
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'categories',
+        loadChildren: () => import('./../private/categories/categories.module').then(m => m.CategoriesPageModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'profile',
+        loadChildren: () => import('./../private/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'game/:data',
+        loadChildren: () => import('./../private/game/game.module').then(m => m.GamePageModule)
       },
       {
-        path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
+        path: 'tournament',
+        loadChildren: () => import('./../private/tournament/tournament.module').then( m => m.TournamentPageModule)
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: 'categories',
     pathMatch: 'full'
   }
 ];
