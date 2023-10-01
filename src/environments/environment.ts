@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  ProfileUrl : "http://10.0.0.36:83",
+  // ProfileUrl : "http://10.0.0.36:83",
+  ProfileUrl : "http://localhost:3001/api/",
   production: false
 };
 

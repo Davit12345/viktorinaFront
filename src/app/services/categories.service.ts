@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoriesService {
-  private ProfileUrl = environment.ProfileUrl+"/api/categories/";
+  private ProfileUrl = environment.ProfileUrl+"categories";
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -18,6 +18,6 @@ export class CategoriesService {
 
   }
   public  getCategories(formData:any):Observable<any>{
-    return this.http.post<any>(this.ProfileUrl + 'get-all', formData,{headers:this.headers});
+    return this.http.get<any>(this.ProfileUrl ,{headers:this.headers});
   }
 }

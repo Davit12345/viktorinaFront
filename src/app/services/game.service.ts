@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class GameService {
-  private ProfileUrl = environment.ProfileUrl+"/api/game/";
+  private url = environment.ProfileUrl+"games/";
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ export class GameService {
   constructor(private http: HttpClient,private _storage:StorageProvider) {
 
   }
-  public  getGameData(formData:any):Observable<any>{
-    return this.http.post<any>(this.ProfileUrl + 'get-data', formData,{headers:this.headers});
+  public  getGameData():Observable<any>{
+    return this.http.get<any>(this.url + 'simple',{headers:this.headers});
   }
 }

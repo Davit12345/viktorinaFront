@@ -23,7 +23,7 @@ export class CategoriesPage implements OnInit {
     this._categoriesService.getCategories({})
       .subscribe(
         res => {
-          this.items = res.data
+          this.items = res
         }
       );
   }

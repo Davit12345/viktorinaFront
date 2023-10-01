@@ -14,7 +14,7 @@ export class StorageProvider {
 
     async LogedIn(data: any) {
         await localStorage.setItem(TOKEN, data.token);
-        await localStorage.setItem(REFRESH_TOKEN, data.refresh_token);
+        // await localStorage.setItem(REFRESH_TOKEN, data.refresh_token);
         await localStorage.setItem(USER, JSON.stringify(data.user));
     }
     async setUser(user: any) {
@@ -23,7 +23,7 @@ export class StorageProvider {
 
     LogedOut() {
         localStorage.removeItem(TOKEN)
-        localStorage.removeItem(REFRESH_TOKEN)
+        // localStorage.removeItem(REFRESH_TOKEN)
         localStorage.removeItem(USER)
     }
 }

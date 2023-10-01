@@ -33,15 +33,19 @@ export class RegisterPage implements OnInit {
     this._userService.register( this.ionicForm.value)
       .subscribe(
         res => {
-          if(res.respcode==1){
+          console.log(res)
+          // if(res.respcode==1){
+
             this.router.navigateByUrl('/login')
-            this.functions.presentToast('Success Registered',FunctionsProvider.SUCCES_TOAST)
-          }else{
-            this.functions.presentToast(res.respmess,FunctionsProvider.ERROR_TOAST)
-            console.log(res.resmess)
-          }
+          //   this.functions.presentToast('Success Registered',FunctionsProvider.SUCCES_TOAST)
+          // }else{
+          //   this.functions.presentToast(res.respmess,FunctionsProvider.ERROR_TOAST)
+          //   console.log(res.resmess)
+          // }
         },
-        err => console.log(err)
+        err => {
+          this.functions.presentToast(err.statusText,FunctionsProvider.ERROR_TOAST)
+        }
       );
 
   }

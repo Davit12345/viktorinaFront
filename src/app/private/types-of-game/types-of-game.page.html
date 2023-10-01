@@ -8,7 +8,7 @@
 
 
     <ion-card *ngFor="let item of gameTypes">
-        <ion-row class="flex">
+        <ion-row class="flex" (click)="chooseType(item)">
             <ion-col class="col col-25">
                 <ion-img [src]="item.image"></ion-img>
             </ion-col>
@@ -17,5 +17,11 @@
             </ion-col>
         </ion-row>
     </ion-card>
+
+
+  <div class="ion-padding">
+    <ion-input [(ngModel)]="message" placeholder="Type a message"></ion-input>
+    <ion-button (click)="sendMessage()">Send</ion-button>
+  </div>
 
 </ion-content>

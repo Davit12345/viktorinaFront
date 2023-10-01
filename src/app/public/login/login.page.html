@@ -1,7 +1,9 @@
 
 <ion-content>
+
+
+
     <div class="content">
-       <div class="header"></div>
         <div class="body">
 
             <div class="cube">
@@ -10,21 +12,26 @@
                     <div class="inputs">
 
                         <div>
-                            <ion-input  placeholder="username" formControlName="username" type="text" ></ion-input>
+                          <ion-label class="ion-text-left" position="floating">Username</ion-label>
+
+                          <ion-input  placeholder="username" formControlName="username" type="text" ></ion-input>
                         </div>
                         <div>
-                            <ion-input  placeholder="password" formControlName="password" type="password" ></ion-input>
-                        </div>
+                          <ion-label class="ion-text-start" position="floating">Password</ion-label>
 
+                          <ion-input  placeholder="password" formControlName="password" type="password" ></ion-input>
+                        </div>
+                      <button (click)="login()">Confirm</button>
                     </div>
-                    <button (click)="login()">Confirm</button>
+
                 </form>
             </div>
-        </div>
-        <div class="footer">
+          <div class="footer">
 
             <div>Do you don't have account: <span class="link" routerLink="/register" >Registration</span></div>
+          </div>
         </div>
+
     </div>
 </ion-content>
 

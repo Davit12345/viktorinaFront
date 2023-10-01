@@ -37,5 +37,7 @@
   <ion-content *ngIf="step===GameStep.finish">
     <div>your result</div>
     <div>{{result.correct}}\{{result.count}}</div>
+    <div>your points</div>
+    <div>{{getPoints()}}</div>
   </ion-content>
 </ion-content>

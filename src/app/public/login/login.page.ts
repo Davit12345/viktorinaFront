@@ -30,18 +30,13 @@ export class LoginPage implements OnInit {
     this._userService.login(   this.ionicForm.value)
       .subscribe(
         res => {
-          if(res.respcode){
-            this.storage.LogedIn(res.data);
+                    console.log(res)
+            this.storage.LogedIn(res.user);
             this.router.navigateByUrl('/tabs/categories')
-          }else{
-            this.functions.presentToast(res.respmess,FunctionsProvider.ERROR_TOAST)
-          }        },
-        err => console.log(err)
+
+          },
+        err =>  this.functions.presentToast(err?.errors?.User.toString() || 'User not found',FunctionsProvider.ERROR_TOAST)
       );
-    this._userService.login(
-        // request params
-      this.ionicForm.value,
-        // callback
-    );
+
   }
 }

@@ -28,12 +28,13 @@ export class GamePage implements OnInit {
   percent = 100
   result: Result;
   protected readonly GameStep = GameStep;
-  timeGame = 8;
-  @ViewChild(AnimationTimerComponent,{static:true}) childComponent!: AnimationTimerComponent;
+  timeGame = 15;
+  @ViewChild(AnimationTimerComponent, {static: true}) childComponent!: AnimationTimerComponent;
 
-  child(){
-   this.childComponent.startTimer()
+  child() {
+    this.childComponent.startTimer()
   }
+
   constructor(private route: ActivatedRoute, private _gameService: GameService, private loadingController: LoadingController, private alertController: AlertController) {
     this.result = new Result({})
   }
@@ -53,13 +54,13 @@ export class GamePage implements OnInit {
   }
 
   getData(categories: any) {
-    this._gameService.getGameData({categories})
+    this._gameService.getGameData()
       .subscribe(
         res => {
           if (!this.questionsData) {
-            this.questionsData = res.data
+            this.questionsData = res.questions
           } else {
-            this.questionsData = [...this.questionsData, ...res.data]
+            this.questionsData = [...this.questionsData, ...res.questions]
             this.nextQuestion()
           }
 
@@ -73,7 +74,7 @@ export class GamePage implements OnInit {
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'The game is loading.Pleas wait!',
-      duration: 5000,
+      duration: 1000,
 
     });
     loading.onDidDismiss().then(() => {
@@ -99,7 +100,6 @@ export class GamePage implements OnInit {
     if (!this._currentQuestion) {
       this.setCurrentQuestion({i: 0, data: this.questionsData[0]})
     } else {
-
       if (this._currentQuestion.i === this.questionsData.length - 1) {
         this.getData(this.categoryData);
         return
@@ -128,5 +128,14 @@ export class GamePage implements OnInit {
     clearInterval(this.childComponent.animationIntervalTimer)
   }
 
+  public getPoints() {
+    if (this.result.count === 0 || this.result.correct === 0) {
+      return 0;
+    } else {
+      var p = this.result.incorrect > 0 ? this.result.incorrect : 1;
+      return Math.round( this.result.correct/ this.result.count *100) * this.result.correct
+
+    }
+  }
 
 }
