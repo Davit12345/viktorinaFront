@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
+import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {StorageProvider} from "../providers/storage";
-import {environment} from "../../environments/environment";
-import { Observable } from 'rxjs';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriesService {
-  private url = environment.ProfileUrl+"categories";
+export class GameTypeTimeService {
+  private url = environment.ProfileUrl+"game-type-time";
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ export class CategoriesService {
   constructor(private http: HttpClient,private _storage:StorageProvider) {
 
   }
-  public  getCategories(formData:any):Observable<any>{
-    return this.http.get<any>(this.url ,{headers:this.headers});
+  public  getGameTypeTime():Observable<any>{
+    return this.http.get<any>(this.url,{headers:this.headers});
   }
 }

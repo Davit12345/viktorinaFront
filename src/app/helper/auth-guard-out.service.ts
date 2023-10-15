@@ -13,7 +13,7 @@ export class AuthGuardOutService  implements CanActivate {
     if (!this._storage.isUserLogined()) {
       return true
     } else {
-      this._router.navigate(['/tabs/categories'])
+      this._router.navigate(['/tabs/types'])
       return false
     }
   }

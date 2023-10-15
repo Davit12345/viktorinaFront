@@ -33,7 +33,6 @@ export class AnimationTimerComponent  implements OnInit {
 
   animationIntervalTimer:any=undefined;
   public startTimer() {
-    console.log(1)
     this.progress = 0; // Reset progress
     const increments =  this.time * 100000/ this.interval;
     const incrementAmount = 100 / increments;

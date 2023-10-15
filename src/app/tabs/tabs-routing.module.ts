@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'categories',
+    redirectTo: 'types',
     pathMatch: 'full'
   }
 ];

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GameTypes} from "../../enum/GameTypes";
 import { SocketService } from 'src/app/services/socket.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-types-of-game',
@@ -35,13 +36,13 @@ export class TypesOfGamePage implements OnInit {
   ];
 
   chooseType(item:any){
-        console.log(item)
+       this.router.navigateByUrl('tabs/categories')
   }
 
 
   message: string = '';
 
-  constructor(private socketService: SocketService) {}
+  constructor(private socketService: SocketService,public router:Router) {}
 
   sendMessage() {
     this.socketService.sendMessage(this.message);

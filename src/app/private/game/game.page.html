@@ -5,14 +5,25 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div >   <animation-timer [time]="this.timeGame" [step]="step"></animation-timer></div>
+  <ion-content *ngIf="step===GameStep.InitTypeTime">
+    <ion-grid>
+      <ion-row *ngIf="gameTypeTime.length">
+        <ion-col size="6" *ngFor="let item of gameTypeTime; let i = index;">
+          <ion-card (click)="initGame(item)">
+            <ion-card-header>
+              <ion-card-title> {{item.name}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              {{ item.name }}.
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+
+  <div >   <animation-timer  [time]="this.timeGame" [step]="step"></animation-timer></div>
   <ion-content *ngIf="_currentQuestion && step===GameStep.start">
-<!--    <ion-content>-->
-<!--      <ion-progress-bar [value]="progress" [buffer]="progress"></ion-progress-bar>-->
-<!--    </ion-content>-->
-
-
-<!--    <animation-timer [time]="timeGame"></animation-timer>-->
     <ion-item class="ion-align-items-center">{{task}}\{{timeGame}}</ion-item>
 
 
@@ -34,10 +45,11 @@
     </ion-card-content>
   </ion-card>
   </ion-content>
+
   <ion-content *ngIf="step===GameStep.finish">
     <div>your result</div>
     <div>{{result.correct}}\{{result.count}}</div>
     <div>your points</div>
-    <div>{{getPoints()}}</div>
+    <div>{{result.points}}</div>
   </ion-content>
 </ion-content>

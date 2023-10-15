@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {GameService} from "../../services/game.service";
 import {AlertController, LoadingController} from "@ionic/angular";
@@ -6,6 +6,7 @@ import {GameStep} from "../../enum/GameStap";
 import {CurrentQuestion} from "./shared/CurrentQuestion";
 import {Result} from "./shared/Result";
 import {AnimationTimerComponent} from "../../components/animation-timer";
+import {GameTypeTimeService} from "../../services/game-type-time.service";
 
 @Component({
   selector: 'app-game',
@@ -23,29 +24,54 @@ export class GamePage implements OnInit {
 
   categoryData: any;
   questionsData: any;
-  step: GameStep = GameStep.init;
+  gameTypeTime: any=[]
+
+  step: GameStep = GameStep.InitTypeTime;
   public _currentQuestion: CurrentQuestion | undefined
   percent = 100
   result: Result;
   protected readonly GameStep = GameStep;
-  timeGame = 15;
+  timeGame: number=0;
+
+  task: number = 0
+  intervalTimer: any
   @ViewChild(AnimationTimerComponent, {static: true}) childComponent!: AnimationTimerComponent;
 
-  child() {
-    this.childComponent.startTimer()
-  }
+  // child() {
+  //   this.childComponent.startTimer()
+  // }
 
-  constructor(private route: ActivatedRoute, private _gameService: GameService, private loadingController: LoadingController, private alertController: AlertController) {
+  constructor(private route: ActivatedRoute,
+              private _gameService: GameService,
+              private _gameTypeTimeService: GameTypeTimeService,
+              private loadingController: LoadingController,
+              private alertController: AlertController) {
+
     this.result = new Result({})
   }
 
   ngOnInit() {
   }
 
-  async ionViewWillEnter() {
-    this.task = this.timeGame;
+
+  ionViewWillEnter() {
+    // this.task = this.timeGame;
     this.percent = 100;
     this.result = new Result({})
+    this._gameTypeTimeService.getGameTypeTime()
+      .subscribe(
+        res => {
+          this.gameTypeTime=res
+        }
+      );
+
+  }
+
+  async initGame(item:any) {
+    this.result.time_type_id=item.id;
+    this.task =item.count;
+    this.timeGame =item.count;
+    this.step=GameStep.init;
     this.route.params.subscribe(params => {
       this.categoryData = JSON.parse(params['data']);
       this.getData(this.categoryData)
@@ -54,7 +80,7 @@ export class GamePage implements OnInit {
   }
 
   getData(categories: any) {
-    this._gameService.getGameData()
+    this._gameService.getGameData(categories)
       .subscribe(
         res => {
           if (!this.questionsData) {
@@ -67,9 +93,6 @@ export class GamePage implements OnInit {
         }
       );
   }
-
-  task: number = 0
-  intervalTimer: any
 
   async presentLoading() {
     const loading = await this.loadingController.create({
@@ -93,6 +116,14 @@ export class GamePage implements OnInit {
     if (this.task === 0) {
       clearInterval(this.intervalTimer)
       this.step = GameStep.finish
+      this.result.points=this.getPoints()
+      if(this.result.count>0) {
+        this._gameService.saveResult({result: this.result})
+          .subscribe(res => {
+            console.log(res)
+            console.log(this.result)
+          })
+      }
     }
   }
 
@@ -124,16 +155,19 @@ export class GamePage implements OnInit {
   ionViewDidLeave() {
     this.questionsData = undefined;
     this.setCurrentQuestion(undefined);
-    this.step = GameStep.init
+    clearInterval(this.intervalTimer)
+    this.step = GameStep.InitTypeTime
+    this.task=0;
+    this.timeGame=0;
     clearInterval(this.childComponent.animationIntervalTimer)
   }
 
   public getPoints() {
-    if (this.result.count === 0 || this.result.correct === 0) {
+    if (this.result.count === 0 || this.result.correct === 0 || this.result.correct*100/this.result.count<40) {
       return 0;
     } else {
-      var p = this.result.incorrect > 0 ? this.result.incorrect : 1;
-      return Math.round( this.result.correct/ this.result.count *100) * this.result.correct
+
+      return this.result.count > 0 ? Math.round(this.result.correct / this.result.count * 100) * this.result.correct : 0
 
     }
   }
