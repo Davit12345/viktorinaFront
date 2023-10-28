@@ -32,14 +32,10 @@ export class GamePage implements OnInit {
   result: Result;
   protected readonly GameStep = GameStep;
   timeGame: number=0;
-
   task: number = 0
   intervalTimer: any
   @ViewChild(AnimationTimerComponent, {static: true}) childComponent!: AnimationTimerComponent;
 
-  // child() {
-  //   this.childComponent.startTimer()
-  // }
 
   constructor(private route: ActivatedRoute,
               private _gameService: GameService,
@@ -73,7 +69,11 @@ export class GamePage implements OnInit {
     this.timeGame =item.count;
     this.step=GameStep.init;
     this.route.params.subscribe(params => {
+
       this.categoryData = JSON.parse(params['data']);
+      if(this.categoryData?.categories.length===1){
+        this.result.category_id=this.categoryData.categories[0]
+      }
       this.getData(this.categoryData)
     });
     await this.presentLoading();
@@ -120,7 +120,6 @@ export class GamePage implements OnInit {
       if(this.result.count>0) {
         this._gameService.saveResult({result: this.result})
           .subscribe(res => {
-            console.log(res)
             console.log(this.result)
           })
       }

@@ -4,6 +4,7 @@ export class Result{
   incorrect:number=0;
   time_type_id:number=0;
   points:number=0;
+  category_id:number=0;
   constructor(model: Partial<Result>) {
     Object.assign(this, model);
   }
