@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'find-oponent',
+    loadChildren: () => import('./private/find-oponent/find-oponent.module').then(m => m.FindOponentPageModule)
   }
 
 

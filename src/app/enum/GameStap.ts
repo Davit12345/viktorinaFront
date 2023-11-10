@@ -1,5 +1,6 @@
 export enum GameStep{
-  InitTypeTime,
+  category,
+  typeTime,
   init,
   start,
   finish,

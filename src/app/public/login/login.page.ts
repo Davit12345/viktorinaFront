@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
         res => {
                     console.log(res)
             this.storage.LogedIn(res.user);
-            this.router.navigateByUrl('/tabs/categories')
+            this.router.navigateByUrl('/tabs/types')
 
           },
         err =>  this.functions.presentToast(err?.errors?.User.toString() || 'User not found',FunctionsProvider.ERROR_TOAST)

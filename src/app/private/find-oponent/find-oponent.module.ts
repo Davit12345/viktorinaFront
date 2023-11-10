@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CategoriesPageRoutingModule } from './categories-routing.module';
+import { FindOponentPageRoutingModule } from './find-oponent-routing.module';
 
-import { CategoriesPage } from './categories.page';
+import { FindOponentPage } from './find-oponent.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CategoriesPageRoutingModule
+    FindOponentPageRoutingModule
   ],
-  declarations: [CategoriesPage]
+  declarations: [FindOponentPage]
 })
-export class CategoriesPageModule {}
+export class FindOponentPageModule {}

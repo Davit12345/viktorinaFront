@@ -1,0 +1,15 @@
+<ion-grid>
+  <ion-row *ngIf="items.length">
+    <ion-col size="6" *ngFor="let item of items; let i = index;">
+      <ion-card (click)="chooseCategoryId(item.id)">
+        <ion-card-header>
+          <ion-card-title> {{item.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{ item.name }}.
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+

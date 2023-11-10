@@ -21,19 +21,16 @@ export class GamePage implements OnInit {
   setCurrentQuestion(value: CurrentQuestion | undefined) {
     this._currentQuestion = value;
   }
-
-  categoryData: any;
   questionsData: any;
-  gameTypeTime: any=[]
-
-  step: GameStep = GameStep.InitTypeTime;
+  step: GameStep = GameStep.category;
   public _currentQuestion: CurrentQuestion | undefined
   percent = 100
   result: Result;
   protected readonly GameStep = GameStep;
-  timeGame: number=0;
+  timeGame: number = 0;
   task: number = 0
   intervalTimer: any
+  topList: any
   @ViewChild(AnimationTimerComponent, {static: true}) childComponent!: AnimationTimerComponent;
 
 
@@ -51,36 +48,32 @@ export class GamePage implements OnInit {
 
 
   ionViewWillEnter() {
-    // this.task = this.timeGame;
+    this.step =  GameStep.category;
     this.percent = 100;
     this.result = new Result({})
-    this._gameTypeTimeService.getGameTypeTime()
-      .subscribe(
-        res => {
-          this.gameTypeTime=res
-        }
-      );
 
   }
+  getCategory(id:number){
+    console.log(id)
+    this.result.category_id =id;
+    this.step =  GameStep.typeTime;
+  }
+  getTypeTime(item:any){
+    this.initGame(item)
+  }
 
-  async initGame(item:any) {
-    this.result.time_type_id=item.id;
-    this.task =item.count;
-    this.timeGame =item.count;
-    this.step=GameStep.init;
-    this.route.params.subscribe(params => {
+  async initGame(item: any) {
+    this.result.time_type_id = item.id;
+    this.task = item.count;
+    this.timeGame = item.count;
+    this.step = GameStep.init;
+    this.getData(this.result.category_id)
 
-      this.categoryData = JSON.parse(params['data']);
-      if(this.categoryData?.categories.length===1){
-        this.result.category_id=this.categoryData.categories[0]
-      }
-      this.getData(this.categoryData)
-    });
     await this.presentLoading();
   }
 
-  getData(categories: any) {
-    this._gameService.getGameData(categories)
+  getData(category: number) {
+    this._gameService.getGameData(category)
       .subscribe(
         res => {
           if (!this.questionsData) {
@@ -116,11 +109,12 @@ export class GamePage implements OnInit {
     if (this.task === 0) {
       clearInterval(this.intervalTimer)
       this.step = GameStep.finish
-      this.result.points=this.getPoints()
-      if(this.result.count>0) {
+      this.result.points = this.getPoints()
+      if (this.result.count > 0) {
         this._gameService.saveResult({result: this.result})
           .subscribe(res => {
-            console.log(this.result)
+            console.log(res.topList)
+            this.topList = res.topList
           })
       }
     }
@@ -131,7 +125,7 @@ export class GamePage implements OnInit {
       this.setCurrentQuestion({i: 0, data: this.questionsData[0]})
     } else {
       if (this._currentQuestion.i === this.questionsData.length - 1) {
-        this.getData(this.categoryData);
+        this.getData(this.result.category_id);
         return
       }
       var i = this._currentQuestion.i + 1;
@@ -155,17 +149,16 @@ export class GamePage implements OnInit {
     this.questionsData = undefined;
     this.setCurrentQuestion(undefined);
     clearInterval(this.intervalTimer)
-    this.step = GameStep.InitTypeTime
-    this.task=0;
-    this.timeGame=0;
+    this.step = GameStep.category
+    this.task = 0;
+    this.timeGame = 0;
     clearInterval(this.childComponent.animationIntervalTimer)
   }
 
   public getPoints() {
-    if (this.result.count === 0 || this.result.correct === 0 || this.result.correct*100/this.result.count<40) {
+    if (this.result.count === 0 || this.result.correct === 0 || this.result.correct * 100 / this.result.count < 40) {
       return 0;
     } else {
-
       return this.result.count > 0 ? Math.round(this.result.correct / this.result.count * 100) * this.result.correct : 0
 
     }

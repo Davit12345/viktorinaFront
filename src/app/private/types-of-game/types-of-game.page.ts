@@ -13,30 +13,27 @@ export class TypesOfGamePage implements OnInit {
     {
       title: 'Simple',
       type:GameTypes.simple,
-      image:'assets/images/game-types/simple.png'
-    },
-    {
-      title: '1 vs  offline player(s) ',
-      type:GameTypes.offline,
-      image:'assets/images/game-types/offline.png'
-
+      image:'assets/images/game-types/simple.png',
+      url:'game'
     },
     {
       title: '1 vs 1 online',
       type:GameTypes.online,
-      image:'assets/images/game-types/online.png'
+      image:'assets/images/game-types/online.png',
+      url:'online-game'
 
     },
     {
       title: 'Tournaments',
       type:GameTypes.tournament,
-      image:'assets/images/game-types/tournament.png'
+      image:'assets/images/game-types/tournament.png',
+      url:'tournament'
 
     },
   ];
 
   chooseType(item:any){
-       this.router.navigateByUrl('tabs/categories')
+       this.router.navigateByUrl(`tabs/${item.url}`)
   }
 
 

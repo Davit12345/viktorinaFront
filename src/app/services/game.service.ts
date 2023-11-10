@@ -19,9 +19,9 @@ export class GameService {
 
   }
   public  getGameData(categories:any):Observable<any>{
-    let encodedArray = encodeURIComponent(JSON.stringify(categories?.categories));
+    // let encodedArray = encodeURIComponent(JSON.stringify(categories?.categories));
    let url =this.url+  'simple'
-    return this.http.get<any>(`${url}/${encodedArray}`,{headers:this.headers});
+    return this.http.get<any>(`${url}/${categories}`,{headers:this.headers});
   }
 
   public  saveResult(result:any):Observable<any>{

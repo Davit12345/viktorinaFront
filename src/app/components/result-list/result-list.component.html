@@ -1,0 +1,21 @@
+  <div *ngIf="resultList">
+    <ion-card>
+      <ion-item >
+        <ion-label>Position</ion-label>
+        <ion-label>points</ion-label>
+        <ion-label>correct/count</ion-label>
+        <ion-label> player </ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+    <ion-list>
+      <ion-item *ngFor="let result of resultList; let i = index">
+        <ion-label>{{ i + 1 }}</ion-label>
+        <ion-label>{{ result.points }}</ion-label>
+        <ion-label>{{ result.correct }}/{{ result.count }}</ion-label>
+        <ion-label>{{ result.user.username }}</ion-label>
+      </ion-item>
+    </ion-list>
+    </ion-card>
+  </div>
+
