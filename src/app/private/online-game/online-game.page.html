@@ -1,13 +1,27 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>online-game</ion-title>
+    <ion-title>
+      Chat Rooms
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">online-game</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Room Name</ion-label>
+    <ion-input [(ngModel)]="roomName" placeholder="Enter Room Name"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="createRoom()">Create Room</ion-button>
+  <ion-button expand="block" (click)="joinRoom()">Join Room</ion-button>
+  <ion-button expand="block" (click)="leaveRoom()">Leave Room</ion-button>
+
+  <div *ngIf="roomList">
+    <div>list</div>
+    <ion-item *ngFor="let room of roomList"
+              class="animated-item">
+      <div class="floating-color"></div>
+      {{room}}
+    </ion-item>
+  </div>
 </ion-content>
